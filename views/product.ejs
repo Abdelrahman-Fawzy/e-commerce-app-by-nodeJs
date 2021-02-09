@@ -1,0 +1,30 @@
+<%- include('_layout/header'); -%>
+    <div class="row">
+        <h1 class="page-header"><%= title %></h1>
+        <div class="col-xs-12 col-md-4">
+            <img class="spi" src="/public/product_images/<%= product.fileName %>/<%= product.image%>">
+        </div>
+        <div class="col-xs-12 col-md-8">
+            <p>$<%= parseFloat(product.price).toFixed(2) %></p>
+            <p><%= product.description %></p>
+            <% if (loggedIn) { %>
+                <p><a href="/cart/add/<%= product.slug %>">add to cart</a></p>
+            <% } else { %>
+                <p>you must log in to buy</p>
+            <% } %>
+        </div>
+        <div class="col-xs-12 col-md-7">
+            <ul class="gallery">
+                <% galleryImages.forEach(function(galleryImg) { %>
+                    <% if (galleryImg != 'thumbs') { %>
+                        <li>
+                            <a data-fancybox="galleryProducts" href="/public/product_images/<%= product.fileName %>/gallery/<%= galleryImg %>">
+                                <img src="/public/product_images/<%= product.fileName %>/gallery/thumbs/<%= galleryImg %>">
+                            </a>
+                        </li>
+                    <% } %>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
+<%- include('_layout/footer'); -%>

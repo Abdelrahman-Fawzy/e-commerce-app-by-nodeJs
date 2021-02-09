@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/public/css/normalize.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
+  <link rel="stylesheet" href="/public/css/adminStyle.css">
+  <title><%= title %></title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">e-commerce</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav">
+        <% pages.forEach(function(page) { %>
+          <% if (page.slug == "home") { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/"><%= page.title %></a>
+            </li>
+          <% } else { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/<%= page.slug%>"><%= page.title%></a>
+            </li>
+          <% } %>
+        <% }); %>
+      </ul>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/cart/checkout">my cart (
+            <% if (typeof cart !== "undefined") { %>
+              <%= cart.length %>
+            <% } else { %>
+              0
+            <% } %>
+          )</a>
+        </li>
+        <% if (user) { %>
+          <li class="nav-itme">
+            <a class="nav-link" href="/users/logout">Hi <%= user.username%> logout</a>
+          </li>
+        <% } else { %>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/register">register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/login">login</a>
+        </li>
+        <% } %>
+        <% if (user && user.admin == 1) { %>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/pages">admin area</a>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <%- messages('messages', locals) %>
+
+    <% if (errors) { %>
+      <% errors.forEach(function(error) { %>
+        <div class="alert alert-danger">
+          <%= error.msg %>
+        </div>
+      <% }); %>
+    <% } %>
+
+    <div class="row">
+      <div class="col-xs-12 col-md-3 categories">
+          <h3>categories</h3>
+          <ul class="list-group">
+              <li class="list-group-item">
+                  <a href="/products">all products</a>
+              </li>
+              <% categories.forEach(function(category) { %>
+                  <li class="list-group-item">
+                      <a href="/products/<%= category.slug%>"><%= category.title %></a>
+                  </li>
+              <% }); %>
+          </ul>
+      </div>
+      <div class="col-xs-12 col-md-1">
+
+      </div>
+      <div class="col-xs-12 col-md-8">
+          
+      

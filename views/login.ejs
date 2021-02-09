@@ -1,0 +1,14 @@
+<%- include('_layout/header'); -%>
+    <h1><%- title %></h1>
+    <form action="/users/login" method="POST">
+      <div class="form-group">
+        <label>user name</label>
+        <input type="text" class="form-control" name="username" placeholder="User Name">
+      </div>
+      <div class="form-group">
+        <label>password</label>
+        <input type="password" class="form-control" name="password" placeholder="password">
+      </div>
+      <button class="btn btn-dark">Submit</button>
+    </form>
+<%- include('_layout/footer'); -%>

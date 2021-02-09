@@ -1,0 +1,26 @@
+<%- include('_layout/header'); -%>
+    <h1><%- title %></h1>
+    <form action="/users/register" method="POST">
+      <div class="form-group">
+        <label>name</label>
+        <input class="form-control" type="text" name="name" placeholder="Name">
+      </div>
+      <div class="form-group">
+        <label>email</label>
+        <input class="form-control" type="text" name="email" placeholder="Email">
+      </div>
+      <div class="form-group">
+        <label>user name</label>
+        <input type="text" class="form-control" name="username" placeholder="User Name">
+      </div>
+      <div class="form-group">
+        <label>password</label>
+        <input type="password" class="form-control" name="password" placeholder="password">
+      </div>
+      <div class="form-group">
+        <label>confirm password</label>
+        <input type="password" class="form-control" name="password2" placeholder="confirm password">
+      </div>
+      <button class="btn btn-dark">Submit</button>
+    </form>
+<%- include('_layout/footer'); -%>

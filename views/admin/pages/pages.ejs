@@ -1,0 +1,28 @@
+<%- include('../../_layout/admin-header.ejs'); -%>
+
+<h2 class="page-title">pages</h2>
+<a href="/admin/pages/add-page" class="btn btn-primary">add a new page</a>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>title</th>
+      <th>control</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% pages.forEach(function(page) { %>
+      <tr>
+        <td><%= page.title %></td>
+        <td>
+          <a class="btn btn-success edit" href="/admin/pages/edit-page/<%= page._id %>">edit</a>
+          <% if(!(page.slug == 'home')) { %>
+            <a class="btn btn-danger delete confirmation" href="/admin/pages/delete-page/<%= page._id %>">delete</a>
+          <% }%>
+        </td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+<%- include('../../_layout/admin-footer.ejs'); -%>
